@@ -1,32 +1,47 @@
-# React + TypeScript + Vite
+# Home Work 46 — UserProfile
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Невеликий React + TypeScript застосунок на Vite. Компонент `UserProfile` виконує асинхронний GET-запит до [JSONPlaceholder](https://jsonplaceholder.typicode.com/users/1) та відображає дані користувача, індикатор завантаження та повідомлення про помилку.
 
-Currently, two official plugins are available:
+## Стек
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 + TypeScript
+- Vite
+- Vitest + @testing-library/react (тести з мокуванням API)
 
-## React Compiler
+## Встановлення та запуск
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Застосунок буде доступний на `http://localhost:5173`.
+
+## Тести
+
+```bash
+npm test
+```
+
+Усі тести покривають три сценарії роботи `UserProfile`: завантаження, успішне відображення даних користувача та помилку запиту.
+
+![Успішне проходження тестів](./docs/tests-passing.png)
+
+## Структура проекту
+
+```
+src/
+├── api/            # запити до сервера
+│   ├── client.ts
+│   └── users.ts
+├── components/
+│   ├── UserProfile.tsx
+│   └── UserProfile.test.tsx
+├── constants/
+│   └── config.ts
+├── types/          # типи і інтерфейси
+│   ├── models.ts
+│   └── components.ts
+├── App.tsx
+└── main.tsx
+```
